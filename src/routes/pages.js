@@ -6,4 +6,9 @@ router.get('/dashboard', (req,res) =>{
     res.status(200);
 });
 
+router.get('/config', (req,res) =>{
+    res.render('config');
+    res.status(200);
+});
+
 module.exports = router;
