@@ -16,6 +16,6 @@ app.listen(PORT, () => console.log(`Server wurde gestartet auf Port ${PORT}`))
 
 
 app.get('/', (req, res) =>{
-    res.render('main');
+    res.render('setup');
 });
 
