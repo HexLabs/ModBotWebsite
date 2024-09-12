@@ -5,12 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Config</title>
-    
+    <style>
+        .form-label{
+            color: white;
+        }
+    </style>
 </head>
 <body>
 
-    
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">ChannelID</label>
+        <input type="number" class="form-control" id="tempChannelID" placeholder="">
+      </div>
 
+      <button type="button" class="btn btn-success">Success</button>
+    
     <script>
         var element = document.getElementById("configButton");
         element.classList.add("active");

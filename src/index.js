@@ -4,7 +4,6 @@ const pagesRoute = require('./routes/pages');
 const sqlite = require('sqlite');
 
 
-
 const app = express();
 const PORT = 3001;
 
