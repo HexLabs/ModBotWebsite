@@ -16,15 +16,17 @@
     </style>
 </head>
 <body>
+    <form action="/submit-data" method="post">
     <div class="ticket-system-info">
         <h2>Ticket System</h2>
     <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">ChannelID</label>
-        <input type="number" class="form-control" id="tempChannelID" placeholder="">
+        <label for="ticketChannelID" class="form-label">ChannelID</label>
+        <input name="ticketChannelIDInput" type="number" class="form-control" id="ticketChannelID" placeholder="">
       </div>
     </div>
 
-      <button type="button" class="btn btn-success">Speichern</button>
+      <button type="submit" class="btn btn-success">Speichern</button>
+</form>
     
     <script>
         var element = document.getElementById("configButton");
