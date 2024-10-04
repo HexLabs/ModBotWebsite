@@ -13,19 +13,54 @@
         h2{
             color: white;
         }
+
+        .alert{
+            position: sticky;
+            top: 0;
+            list-style-type: none;
+            
+        }
     </style>
 </head>
 <body>
+    <% if(messages.error){ %>
+    <div class="flashmessages">
+    
+
+        <ul class="alert alert-danger text-center">
+            <li><%=messages.error%></li>    
+        </ul>
+
+    <% }%>
+
+    <% if(messages.success){ %>
+        <div class="flashmessages">
+        
+    
+            <ul class="alert alert-success text-center">
+                <li><%=messages.success%></li>    
+            </ul>
+    
+        <% }%>
+
+    
+
+</div>
     <form action="/submit-data" method="post">
     <div class="ticket-system-info">
         <h2>Ticket System</h2>
     <div class="mb-3">
-        <label for="ticketChannelID" class="form-label">ChannelID</label>
+        <label for="ticketChannelID" class="form-label">TicketChannelID</label>
         <input name="ticketChannelIDInput" type="number" class="form-control" id="ticketChannelID" placeholder="">
       </div>
+      <div class="mb-3">
+        <label for="notifyChannelID" class="form-label">Notify-ChannelID</label>
+        <input type="number" name="notifyChannelIDInput" class="form-control" id="notifyChannelID" placeholder="">
+      </div>
     </div>
-
+    
       <button type="submit" class="btn btn-success">Speichern</button>
+
 </form>
     
     <script>

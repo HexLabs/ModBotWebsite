@@ -1,5 +1,6 @@
 const {Router} = require('express');
 const router = Router();
+const flash = require('express-flash');
 
 router.get('/dashboard', (req,res) =>{
     res.render('dashboard');
@@ -7,8 +8,12 @@ router.get('/dashboard', (req,res) =>{
 });
 
 router.get('/config', (req,res) =>{
-    res.render('config');
+    res.render('config', {messages:req.flash()});
     res.status(200);
 });
+
+function getData(){
+    
+}
 
 module.exports = router;
