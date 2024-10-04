@@ -11,14 +11,17 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "better-sqlite3": "^11.3.0",
     "ejs": "^3.1.10",
     "express": "^4.21.0",
     "express-flash": "^0.0.2",
     "express-messages": "^1.0.1",
     "express-session": "^1.18.0",
     "help": "^3.0.2",
+    "knex": "^3.1.0",
     "modbotwebsite": "file:",
-    "sqlite": "^5.1.1"
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
   },
   "devDependencies": {
     "nodemon": "^3.1.4"
