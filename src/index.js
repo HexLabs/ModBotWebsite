@@ -11,6 +11,7 @@ const flash = require('express-flash');
 
 
 
+
 const app = express();
 const PORT = 3001;
 
@@ -29,8 +30,10 @@ app.use(session({
     }
 }));
 
+
 app.use(flash());
 app.use(express.json());
+
 
 app.use(express.urlencoded({extended:true}));
 app.use(dataRoute);

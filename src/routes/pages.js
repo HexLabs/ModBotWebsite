@@ -1,7 +1,8 @@
 const {Router} = require('express');
 const router = Router();
 const flash = require('express-flash');
-//const db = require('./db/dbData');
+const db = require('../db/dbData');
+const knex = require('../db/knex')
 
 router.get('/dashboard', (req,res) =>{
     res.render('dashboard');
@@ -9,14 +10,15 @@ router.get('/dashboard', (req,res) =>{
 });
 
 router.get('/config', (req,res) =>{
- //   getData(req.body);
-    res.render('config', {messages:req.flash()});
+    const ticketChannelIDDB = getData("1")
+    res.render('config', [{messages:req.flash()}, {ticketChannelIDDB}]);
     res.status(200);
 });
 
-//function getData(reqbody){
-  //  const results = await db.getTicketchannelID(reqbody);
-    
-//}
+ async function getData(reqbody){
+    const results = await db.getTicketchannelID(reqbody)
+    return results
+}
+
 
 module.exports = router;
