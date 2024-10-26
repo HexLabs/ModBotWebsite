@@ -8,11 +8,18 @@ router.get('/dashboard', (req,res) =>{
 });
 
 router.get('/config', (req,res) =>{
-    db.each('SELECT ticketChannelID FROM ticketSystem WHERE guildID='+1, (err,row)=>{
+    db.all('SELECT ticketChannelID FROM ticketSystem WHERE guildID='+1, (err,rows)=>{
         if(err){
             console.log(err);
+        }
+        
+        if(rows.length > 0){
+            res.render('config', {messages:req.flash(),ticketChannelIDDB: rows[0].ticketChannelID});
         }else{
-            res.render('config', {messages:req.flash(),ticketChannelIDDB: row['ticketChannelID']});
+            res.render('config', {
+                messages: req.flash(),
+                ticketChannelIDDB: null // or whatever default you want to set
+            });
         }
     })
     

@@ -1,9 +1,11 @@
 const express = require('express');
+require('dotenv').config()
 const loginRoute = require('./routes/login');
 const pagesRoute = require('./routes/pages');
 const dataRoute = require('./routes/data');
 const session = require('express-session');
 const flash = require('express-flash');
+
 
 
 
@@ -22,7 +24,7 @@ app.set('view engine', 'ejs');
 app.set('views', './src/views');
 
 app.use(session({
-    secret:'TestKey1701',
+    secret: process.env.SECRET,
     resave:true,
     saveUninitialized:true,
     cookie:{
