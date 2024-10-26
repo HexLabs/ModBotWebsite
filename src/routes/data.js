@@ -2,7 +2,6 @@ const {Router} = require('express');
 const router = Router();
 const flash = require('express-flash');
 const knex = require('../db/knex')
-const {setTicketchannelID} = require('../db/dbData')
 
 
 
@@ -12,7 +11,6 @@ router.post('/submit-data', (req,res) =>{
 
     if(!valuesEmpty){
         req.flash('success', "Die Einstellungen wurden gespeichert");
-        setTicketchannelID(req.body.ticketChannelIDInput)
         res.redirect('config');
         console.log(req.body);
         

@@ -1,12 +1,15 @@
-const knex = require('./knex');
+const db = require('./knex');
+const sql = require('sqlite3')
+
 
 function setTicketchannelID(channelID){
     return knex("ticketSystem").insert(channelID);
     
 }
 
-function getTicketchannelID(guildID){
-    return knex("ticketSystem").select('*').where('guildID', guildID);
+async function getTicketchannelID(guildID){
+    
+   
 }
 
 

@@ -1,22 +1,26 @@
 const {Router} = require('express');
 const router = Router();
 const flash = require('express-flash');
-const db = require('../db/dbData');
-const knex = require('../db/knex')
+const db = require('../db/knex');
 
 router.get('/dashboard', (req,res) =>{
-    res.render('dashboard');
-    res.status(200);
+    res.status(200).render('dashboard')
 });
 
 router.get('/config', (req,res) =>{
-    const ticketChannelIDDB = getData("1")
-    res.render('config', [{messages:req.flash()}, {ticketChannelIDDB}]);
-    res.status(200);
+    db.each('SELECT ticketChannelID FROM ticketSystem WHERE guildID='+1, (err,row)=>{
+        if(err){
+            console.log(err);
+        }else{
+            res.render('config', {messages:req.flash(),ticketChannelIDDB: row['ticketChannelID']});
+        }
+    })
+    
+   // res.render('config', {messages:req.flash(),ticketChannelIDDB: ticketChannelIDDB});
 });
 
- async function getData(reqbody){
-    const results = await db.getTicketchannelID(reqbody)
+async function getData(guildID){
+    const results = await db.getTicketchannelID(guildID)
     return results
 }
 

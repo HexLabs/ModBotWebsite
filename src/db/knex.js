@@ -1,22 +1,19 @@
 // db.js
+
+const path = require('path')
+const dbPath = path.join(__dirname, 'app.db')
 const knex = require('knex');
+const sqlite3 = require('sqlite3').verbose()
+let sql;
 
-const connectedKnex = knex({
-    client: 'sqlite3',
-    connection: {
-        filename: "../app.sqlite3"
-    },
-    useNullAsDefault: true,
-});
 
-// Test the connection
-connectedKnex.raw('SELECT 1')
-    .then(() => {
-        console.log('Database connected successfully');
-        
-    })
-    .catch(err => {
-        console.error('Database connection error:', err);
-    });
+const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE,(err) =>{
+    if (err){
+        console.error(err.message)
+    }
+})
 
-module.exports = connectedKnex;
+sql= `CREATE TABLE IF NOT EXISTS ticketSystem(guildID INTEGER PRIMARY KEY, ticketChannelID INTEGER, notifyChannelID INTEGER)`
+db.run(sql)
+
+module.exports = db;
