@@ -8,27 +8,26 @@ router.get('/dashboard', (req,res) =>{
 });
 
 router.get('/config', (req,res) =>{
-    db.all('SELECT ticketChannelID FROM ticketSystem WHERE guildID='+1, (err,rows)=>{
+    
+   getData(2, res, req) 
+   
+});
+
+async function getData(guildID, res, req){
+    db.all('SELECT ticketChannelID FROM ticketSystem WHERE guildID='+guildID, (err,rows)=>{
         if(err){
             console.log(err);
         }
         
         if(rows.length > 0){
-            res.render('config', {messages:req.flash(),ticketChannelIDDB: rows[0].ticketChannelID});
+          return res.render('config', {messages:req.flash(),ticketChannelIDDB: rows[0].ticketChannelID});
         }else{
-            res.render('config', {
+           return res.render('config', {
                 messages: req.flash(),
                 ticketChannelIDDB: null // or whatever default you want to set
             });
         }
     })
-    
-   // res.render('config', {messages:req.flash(),ticketChannelIDDB: ticketChannelIDDB});
-});
-
-async function getData(guildID){
-    const results = await db.getTicketchannelID(guildID)
-    return results
 }
 
 
