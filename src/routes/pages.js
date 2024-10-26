@@ -1,28 +1,28 @@
 const {Router} = require('express');
 const router = Router();
 const flash = require('express-flash');
-const sqlite3 = require('sqlite3').verbose();
-let sql;
+const db = require('../db/knex');
 
 router.get('/dashboard', (req,res) =>{
-    res.render('dashboard');
-    res.status(200);
+    res.status(200).render('dashboard')
 });
 
 router.get('/config', (req,res) =>{
-    res.render('config', {messages:req.flash()});
-    res.status(200);
-});
-
-function getData(){
+    db.each('SELECT ticketChannelID FROM ticketSystem WHERE guildID='+1, (err,row)=>{
+        if(err){
+            console.log(err);
+        }else{
+            res.render('config', {messages:req.flash(),ticketChannelIDDB: row['ticketChannelID']});
+        }
+    })
     
-
-
-const db = new sqlite3.Database('./app.db', sqlite3.OPEN_READWRITE, (err) =>{
-    if(err) return console.error(err.message);
+   // res.render('config', {messages:req.flash(),ticketChannelIDDB: ticketChannelIDDB});
 });
 
-sql
+async function getData(guildID){
+    const results = await db.getTicketchannelID(guildID)
+    return results
 }
+
 
 module.exports = router;
